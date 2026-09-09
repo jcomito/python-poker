@@ -1,4 +1,294 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background: #111;
+    color: white;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.game-header {
+    height: 70px;
+
+    flex-shrink: 0;
+
+    background: #111;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        auto
+        1fr;
+
+    align-items: center;
+
+    padding: 0 30px;
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.08);
+}
+
+.game-title {
+    grid-column: 2;
+
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.pot {
+    grid-column: 3;
+
+    justify-self: end;
+
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+/* =========================
+   FELT / GAME AREA
+========================= */
+
+.game-area {
+    position: relative;
+
+    flex: 1;
+
+    min-height: 0;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            #207747 0%,
+            #17673c 65%,
+            #10552f 100%
+        );
+
+    overflow: hidden;
+
+    box-shadow:
+        inset 0 0 100px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================
+   PLAYER SEATS
+========================= */
+
+.player-seat {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 4px;
+}
+
+.opponent {
+    position: absolute;
+
+    transform:
+        translate(-50%, -50%);
+}
+
+.player-name {
+    font-size: 17px;
+    font-weight: bold;
+
+    text-shadow:
+        0 2px 3px rgba(0, 0, 0, 0.8);
+}
+
+.player-chips {
+    font-size: 14px;
+
+    padding: 4px 10px;
+
+    background:
+        rgba(0, 0, 0, 0.55);
+
+    border-radius: 12px;
+}
+
+.player-cards {
+    display: flex;
+
+    gap: 4px;
+}
+
+
+/* =========================
+   OPPONENTS
+========================= */
+
+.opponent .player-name {
+    font-size: 14px;
+}
+
+.opponent .player-chips {
+    font-size: 12px;
+
+    padding: 3px 8px;
+}
+
+
+/* =========================
+   REAL CARDS
+========================= */
+
 .playing-card {
-    width: 120px;
+    width: 105px;
     height: auto;
+
+    filter:
+        drop-shadow(
+            0 4px 4px rgba(0, 0, 0, 0.5)
+        );
+}
+
+
+/* =========================
+   OPPONENT CARD BACKS
+========================= */
+
+.card-back {
+    width: 60px;
+    height: 87px;
+
+    border-radius: 5px;
+    border: 3px solid white;
+
+    background:
+        repeating-linear-gradient(
+            45deg,
+            #8c1d1d,
+            #8c1d1d 5px,
+            #651414 5px,
+            #651414 10px
+        );
+
+    box-shadow:
+        0 3px 4px rgba(0, 0, 0, 0.45);
+}
+
+
+/* =========================
+   COMMUNITY CARDS
+========================= */
+
+.community-area {
+    position: absolute;
+
+    left: 50%;
+    top: 52%;
+
+    transform:
+        translate(-50%, -50%);
+}
+
+.community-cards {
+    display: flex;
+
+    gap: 10px;
+}
+
+.empty-card {
+    width: 105px;
+    height: 152px;
+
+    border-radius: 7px;
+
+    border:
+        2px dashed
+        rgba(255, 255, 255, 0.20);
+
+    background:
+        rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================
+   HERO / YOUR SEAT
+========================= */
+
+.hero-player {
+    position: absolute;
+
+    left: 50%;
+    bottom: 4px;
+
+    transform:
+        translateX(-50%);
+}
+
+.hero-player .playing-card {
+    width: 115px;
+}
+
+
+/* =========================
+   ACTION BAR
+========================= */
+
+.action-bar {
+    height: 78px;
+
+    flex-shrink: 0;
+
+    background: #111;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    border-top:
+        1px solid rgba(255, 255, 255, 0.08);
+}
+
+.action-bar button {
+    min-width: 100px;
+
+    padding: 12px 20px;
+
+    border: 0;
+    border-radius: 6px;
+
+    background: #333;
+    color: white;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.action-bar button:hover {
+    background: #444;
 }

@@ -1,13 +1,119 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Python Poker</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
 </head>
+
 <body>
-    <h1>Python Poker</h1>
-    <svg class="playing-card" viewBox="0 0 169.075 244.64">
-        <use href="{{ url_for('static', filename='cards/svg-cards.svg') }}#diamond_jack"></use>
-    </svg>
+
+    <header class="game-header">
+        <div class="game-title">
+            Python Poker
+        </div>
+
+        <div class="pot">
+            Pot: $0
+        </div>
+    </header>
+
+
+    <main class="game-area">
+
+        {% for seat in opponent_seats %}
+
+            <div
+                class="player-seat opponent"
+                style="
+                    left: {{ seat.x }}%;
+                    top: {{ seat.y }}%;
+                "
+            >
+
+                <div class="player-name">
+                    {{ seat.player.name }}
+                </div>
+
+                <div class="player-cards">
+
+                    <div class="card-back"></div>
+                    <div class="card-back"></div>
+
+                </div>
+
+                <div class="player-chips">
+                    $1500
+                </div>
+
+            </div>
+
+        {% endfor %}
+
+
+        <div class="community-area">
+
+            <div class="community-cards">
+
+                <div class="empty-card"></div>
+                <div class="empty-card"></div>
+                <div class="empty-card"></div>
+                <div class="empty-card"></div>
+                <div class="empty-card"></div>
+
+            </div>
+
+        </div>
+
+
+        <div class="player-seat hero-player">
+
+            <div class="player-name">
+                {{ player.name }}
+            </div>
+
+            <div class="player-cards">
+
+                {% for card in player.hand %}
+
+                    <svg
+                        class="playing-card"
+                        viewBox="0 0 169.075 244.64"
+                    >
+                        <use
+                            href="{{ url_for('static', filename='cards/svg-cards.svg') }}#{{ card_to_svg_id(card) }}"
+                        ></use>
+                    </svg>
+
+                {% endfor %}
+
+            </div>
+
+            <div class="player-chips">
+                $1500
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <footer class="action-bar">
+
+        <button>Fold</button>
+        <button>Check</button>
+        <button>Call</button>
+        <button>Raise</button>
+
+    </footer>
+
 </body>
+
 </html>
